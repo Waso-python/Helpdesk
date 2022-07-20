@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Publishers</h2>
+    <ul>
+  
+            <li>{{ object.name }}</li>
+             <li>{{ object.data }}</li>
+
+
+             {% if object.data.document %}
+   <hr>
+{% for key1,value1 in object.data.document.items %}
+    <div class="section">
+        <h4><a href="#" class="section_toggle"></a>  {{ key1|title }}:</h4>
+        <table class="table table-condensed">
+            {% for key2,value2 in value1.items %}
+                {{ key2 }}: {{ value2 }}<br>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endfor %}
+<hr>
+{% endif %}
+  
+    </ul>
+{% endblock %}

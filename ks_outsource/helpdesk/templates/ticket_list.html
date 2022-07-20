@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      
+
+    <h2>Заявки</h2>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Дата</th>
+            <th>Дата повторного созвона</th>
+            <th>Тип связи</th>
+            <th>Пользователь</th>
+            <th>Телефоны</th>
+            <th>Статус</th>
+            <th>Пользователь</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            {% for publisher in object_list %}
+            <tr>
+            <td>{{ publisher.id}}</td>
+            <td>{{ publisher.dt }}</td>
+            <td>{{ publisher.dt_plan }}</td>
+            <td>{{ publisher.help_type }}</td>
+            <td>{{ publisher.org_user }}</td>
+            <td>{{ publisher.org_user.get_phone }}</td>
+            <td>{{ publisher.status }}</td>
+            <td>{{ publisher.user }}</td>
+            </tr>
+            {% endfor %}
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+{% endblock %}
