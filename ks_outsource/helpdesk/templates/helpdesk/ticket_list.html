@@ -1,0 +1,53 @@
+{% extends "helpdesk/base.html" %}
+{% load static %}
+{% block content %}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      
+
+    <h2>Заявки</h2>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th>Дата</th>
+            <th>Нужны действия</th>
+            <th>Тип связи</th>
+            <th>Пользователь</th>
+            <th>Телефоны</th>
+            <th>Проблема</th>
+            <th>Комментарий</th>
+            
+            <th>Статус</th>
+            <th>Пользователь</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            {% for publisher in object_list %}
+            <tr>
+            <td valign=middle>{{ publisher.dt }}</td>
+            <td valign=middle >
+            <br>
+            {%if publisher.get_forward_date%}
+              <div class="spinner-grow spinner-grow-sm" role="status" > </div>
+              <div class="spinner-grow spinner-grow-sm" role="status" > </div>
+              <div class="spinner-grow spinner-grow-sm" role="status" > </div>
+            {%endif%}
+            {% comment %} {{ publisher.get_forward_date }} {% endcomment %}</td>
+            <td valign=middle>{{ publisher.help_type }}</td>
+            <td valign=middle>{{ publisher.org_user }}</td>
+            <td valign=middle> {{ publisher.org_user.get_phone }}</td>
+            <td valign=middle>{{ publisher.infosys }} {{ publisher.problem }}</td>
+            <td valign=middle>{{ publisher.comment }}</td>
+            <td valign=middle>{{ publisher.status }}</td>
+            <td valign=middle> {{ publisher.user }}</td>
+            </tr>
+            {% endfor %}
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+{% endblock %}

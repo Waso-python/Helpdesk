@@ -101,4 +101,8 @@ class Ticket(models.Model):
     def __str__(self):
         return str(self.dt)+' '+self.status.name+' '+self.infosys.name+' '+self.problem.name + ' ' + self.org_user.org.name
 
+    def get_forward_date(self):
+        return True if self.dt_plan else False
+
+
 """Закончить главную модель и определить методы"""
