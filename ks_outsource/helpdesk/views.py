@@ -42,8 +42,8 @@ class TicketListView(ListView):
 class OrgUserCreate(CreateView):
     model = OrgUser
     form_class = OrgUserForm
-    template_name = "helpdesk/testcreate.html"
-    success_url = '/thanks/'
+    template_name = "helpdesk/orguser_create.html"
+    success_url = '/orguser/'
 
 
 # def index(request):
