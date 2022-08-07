@@ -6,7 +6,7 @@ class OrgUserForm(forms.ModelForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     sec_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    org = forms.CharField(widget=forms.Select(attrs={'class': 'form-control'}))
+    org = forms.ModelChoiceField(queryset=Org.objects.all(),  widget=forms.Select(attrs={'class': 'form-control'}))
     phones = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 
