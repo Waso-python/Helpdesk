@@ -24,12 +24,10 @@ class OrgUserCreate(CreateView):
     success_url = '/orguser/'
 
     def add_phone(self, user):
-        print("add_phone", self.phones)
         phone_list = self.phones.replace(' ','').split(',')
         
         def save_phone(phone):
             phone = phone.replace(' ','')
-            print(phone, type(user))
             ph = PhoneNumber(user = user, phone = phone)
             ph.save()
 

@@ -10,6 +10,7 @@ class Org(models.Model):
     fullname = models.TextField(verbose_name='Полное наименование', null=True,blank=True)
     inn = models.CharField(max_length=13, verbose_name='ИНН', null=True,blank=True)
     on_contract = models.BooleanField(verbose_name='контракт заключен', default=True)
+        
 
     def __str__(self) -> str:
         return self.name
@@ -40,10 +41,11 @@ class OrgUser(models.Model):
     first_name = models.CharField(max_length=100, null=False, verbose_name='Имя')
     sec_name = models.CharField(max_length=100, null=True, verbose_name='Отчество',blank=True)
     last_name = models.CharField(max_length=100, null=True, verbose_name='Фамилия',blank=True)
-    phone = models.CharField(max_length=100, null=True, verbose_name='Телефоны')
+    phone = models.CharField(max_length=100, null=True, verbose_name='Телефоны',blank=True)
     anydesk_id = models.CharField(max_length=50, verbose_name= 'ID AnyDesk', null=True,blank=True)
     user_appointment = models.ForeignKey(Appointment, on_delete=models.PROTECT, null=True)
     org = models.ForeignKey(Org, on_delete=models.PROTECT)
+    active = models.BooleanField(verbose_name='Активен', default=True)
 
     def get_phone(self):
         result = PhoneNumber.objects.filter(user = self).values_list('phone')
@@ -54,16 +56,35 @@ class OrgUser(models.Model):
                 res = res + (', ' if res else ' ')+ value 
                 
         return res
+
+    def phone_optimize(self):
+    
+         
+        def save_phone(phone):
+            print(phone)
+            phone = phone.replace(' ','')
+            ph = PhoneNumber(user = self, phone = phone)
+            ph.save()
+        if self.phone:
+            phone_list = self.phone.replace(' ','').split(',')
+            for el in phone_list:
+                if el:
+                    save_phone(el)
+       
+
+        
+    
+
     
     # def add_phone(self, obj):
     #     PhoneNumber.
 
     def __str__(self) -> str:
-        return self.first_name+' '+(self.sec_name if self.sec_name else '') + ' '+ self.user_appointment.name + self.org.name
+        return self.first_name+' '+(self.sec_name if self.sec_name else '') + ' '+(self.last_name if self.last_name else '')
 
 class PhoneNumber(models.Model):
     phone = models.CharField(max_length=15, blank=True)
-    user = models.ForeignKey(OrgUser, on_delete=models.PROTECT)
+    user = models.ForeignKey(OrgUser, on_delete=models.CASCADE)
 
 
 class InfoSys(models.Model):

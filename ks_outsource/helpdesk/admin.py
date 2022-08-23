@@ -22,17 +22,8 @@ admin.site.register(PhoneNumber, PhoneAdmin)
 
 #admin.site.register(OrgUser)
 class OrgUserAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'sec_name', 'last_name', 'phone', 'anydesk_id', 'user_appointment', 'org', 'get_phone')
+    list_display = ('first_name', 'sec_name', 'last_name', 'anydesk_id', 'user_appointment', 'org', 'get_phone', 'active')
     
-    # def get_phone(self, obj):
-    #     result = PhoneNumber.objects.filter(user = obj).values_list('phone')
-    #     res = ''
-    #     for i in result:
-    #         k = 0
-    #         for value in i:
-    #             res = res + (', ' if res else ' ')+ value 
-                
-    #     return res
 
 admin.site.register(OrgUser, OrgUserAdmin)
 
