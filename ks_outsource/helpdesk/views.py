@@ -21,8 +21,8 @@ class OrgUserCreate(CreateView):
     model = OrgUser
     form_class = OrgUserForm
     template_name = "helpdesk/orguser_create.html"
-    success_url = '/orguser/'
-
+    success_url = reverse_lazy('orguser_list')
+    
     def add_phone(self, user):
         phone_list = self.phones.replace(' ','').split(',')
         
