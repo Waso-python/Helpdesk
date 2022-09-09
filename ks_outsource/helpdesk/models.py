@@ -63,6 +63,7 @@ class OrgUser(models.Model):
     class Meta:
         verbose_name = "Клиент"
         verbose_name_plural = "Клиенты"
+        ordering = ['org__name', 'last_name']
 
     def get_phone(self):
         self.phone_optimize()
