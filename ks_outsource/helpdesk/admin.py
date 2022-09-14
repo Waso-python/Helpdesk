@@ -9,21 +9,30 @@ from .models import PhoneNumber, Ticket, Org, OrgUser, Problem, HelpType, InfoSy
 #admin.site.register(Ticket)
 class TicketAdmin(admin.ModelAdmin):
     list_display = ('dt', 'dt_plan', 'help_type', 'status', 'user', 'org_user', 'infosys', 'problem', 'comment')
+    list_filter = ('status', 'user',)
+    # list_editable = ('help_type', 'status')
+    list_per_page: int = 25
+    list_max_show_all: int = 100
+    
 admin.site.register(Ticket, TicketAdmin)
 
 #admin.site.register(Org)
 class OrgAdmin(admin.ModelAdmin):
     list_display = ('name', 'fullname', 'inn', 'on_contract')
+    list_editable =  ('on_contract', )
 admin.site.register(Org, OrgAdmin)
 
 class PhoneAdmin(admin.ModelAdmin):
     list_display = ('phone', 'user')
+   
 admin.site.register(PhoneNumber, PhoneAdmin)
 
 #admin.site.register(OrgUser)
 class OrgUserAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'sec_name', 'last_name', 'anydesk_id', 'user_appointment', 'org', 'get_phone', 'active')
-    
+    list_display = ('id','first_name', 'sec_name', 'last_name', 'anydesk_id', 'user_appointment', 'org', 'get_phone', 'active')
+    # list_editable =  ('first_name', 'sec_name', 'last_name', 'user_appointment')
+    list_per_page: int = 25
+    list_max_show_all: int = 100
 
 admin.site.register(OrgUser, OrgUserAdmin)
 
