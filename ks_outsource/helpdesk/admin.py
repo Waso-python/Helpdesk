@@ -9,7 +9,7 @@ from .models import PhoneNumber, Ticket, Org, OrgUser, Problem, HelpType, InfoSy
 #admin.site.register(Ticket)
 class TicketAdmin(admin.ModelAdmin):
     list_display = ('dt', 'dt_plan', 'help_type', 'status', 'user', 'org_user', 'infosys', 'problem', 'comment')
-    list_filter = ('status', 'user',)
+    # list_filter = ('status', 'user',)
     # list_editable = ('help_type', 'status')
     list_per_page: int = 25
     list_max_show_all: int = 100

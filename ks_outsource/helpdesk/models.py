@@ -132,7 +132,7 @@ class HelpType(models.Model):
 
 class Problem(models.Model):
     name = models.CharField(max_length=250, verbose_name='Проблема')
-    infosys = models.ManyToManyField(InfoSys)
+    # infosys = models.ManyToManyField(InfoSys)
 
     def __str__(self) -> str:
         return self.name

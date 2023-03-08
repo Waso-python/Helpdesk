@@ -23,4 +23,5 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('admin/', admin.site.urls),
     path('helpdesk/', include('helpdesk.urls')),
+    path('api/', include('hd_api.urls')),
 ]
